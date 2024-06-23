@@ -1,0 +1,134 @@
+<div class="position">
+  <div class="main-div p-3">
+    <div class="m-2">
+      <p class="m-0 pb-2 mb-2 d-flex header-txt align-items-center">
+        <span
+          class="pe-1 color-orange"
+          nz-icon
+          nzType="user-add"
+          nzTheme="outline"
+        ></span>
+        Register
+      </p>
+      <p class="m-0 pb-2 opacity-50">
+        Create your account - enjoy our services with most updated features.
+      </p>
+    </div>
+    <div class="m-2">
+      <form
+        class="w-100"
+        nz-form
+        [formGroup]="registerForm"
+        (ngSubmit)="submit()"
+      >
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="me-1">
+            <nz-form-label nzRequired>First Name</nz-form-label>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please enter first name">
+                <input
+                  nz-input
+                  formControlName="firstName"
+                  placeholder="First Name"
+                  #firstName
+                  autofocus
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div class="ms-1">
+            <nz-form-label nzRequired>Last Name</nz-form-label>
+            <nz-form-item nzError>
+              <nz-form-control nzErrorTip="Please enter last name">
+                <input
+                  nz-input
+                  formControlName="lastName"
+                  placeholder="Last name"
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <nz-form-label nzRequired>E-mail</nz-form-label>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl">
+            <input
+              nz-input
+              formControlName="email"
+              placeholder="Email"
+              type="email"
+            />
+            <ng-template #emailErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('email')"
+                >The input is not valid E-mail!</ng-container
+              >
+              <ng-container *ngIf="control.hasError('required')"
+                >Please input your E-mail!</ng-container
+              >
+              <ng-container *ngIf="control.hasError('duplicateEmailError')"
+                >Email has already registered</ng-container
+              >
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-label nzRequired>Password</nz-form-label>
+        <nz-form-item>
+          <nz-form-control
+            nzErrorTip="Min character 8 (uppe, lower, special, num)"
+          >
+            <nz-input-group [nzSuffix]="passwordInput">
+              <input
+                nz-input
+                [type]="passwordVisible ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="password"
+              />
+            </nz-input-group>
+            <ng-template #passwordInput>
+              <span
+                nz-icon
+                [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                (click)="passwordVisible = !passwordVisible"
+              ></span>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-label nzRequired>Confirm Password</nz-form-label>
+        <nz-form-item>
+          <nz-form-control
+            class="w-100"
+            nzErrorTip="Please enter your confirm password"
+          >
+            <nz-input-group [nzSuffix]="confirmPasswordInput">
+              <input
+                nz-input
+                [type]="confirmPasswordVisible ? 'text' : 'password'"
+                formControlName="confirmPassword"
+                placeholder="confirm your password"
+              />
+            </nz-input-group>
+            <ng-template #confirmPasswordInput>
+              <span
+                nz-icon
+                [nzType]="confirmPasswordVisible ? 'eye-invisible' : 'eye'"
+                (click)="confirmPasswordVisible = !confirmPasswordVisible"
+              ></span>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <button type="submit" class="p-2 my-2 w-100 border-0 submit-btn">
+          Let's Roll
+        </button>
+      </form>
+    </div>
+
+    <div class="text-center">
+      <p class="m-0">
+        Already have account?
+        <a class="cursor-pointer footer-txt register-txt" routerLink=""
+          >Login</a
+        >
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="orders">
+  <div class="header">
+    <button
+      class="d-flex align-items-center"
+      nz-button
+      nzType="primary"
+      nzShape="round"
+      routerLink="/main-module/dashboard"
+    >
+      Back
+    </button>
+    <h3>All orders</h3>
+  </div>
+  <div class="table">
+    <nz-table
+      #nzTable
+      [nzShowSizeChanger]="currentUser?.email === admin.email"
+      [nzPageSize]="pageSize"
+      [nzTotal]="total"
+      [nzPageIndex]="pageIndex"
+      [nzData]="listOfDisplayData"
+      nzTableLayout="fixed"
+    >
+      <thead>
+        <tr>
+          <th [nzSortFn]="true">Date</th>
+          <th *ngIf="currentUser?.email === admin.email" nzCustomFilter>
+            Name
+            <nz-filter-trigger
+              *ngIf="currentUser?.email === admin.email"
+              [(nzVisible)]="visible"
+              [nzActive]="searchValue.length > 0"
+              [nzDropdownMenu]="menu"
+            >
+              <span nz-icon nzType="search"></span>
+            </nz-filter-trigger>
+          </th>
+
+          <th>Order Type</th>
+          <th [nzSortFn]="true">Quantity</th>
+          <th [nzColumnKey]="'price'" [nzSortFn]="true">Price</th>
+          <th [nzColumnKey]="'price'" [nzSortFn]="true">Vehical No</th>
+          <th [nzColumnKey]="'price'" [nzSortFn]="true">Vehical type</th>
+          <th [nzFilters]="listOfFilter">Desrciption</th>
+          <th [nzFilters]="listOfFilter">Status</th>
+          <th *ngIf="currentUser?.email === admin.email">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of nzTable.data">
+          <td>{{ data.date || "-" }}</td>
+          <td *ngIf="currentUser?.email === admin.email">
+            {{ data.userName }}
+          </td>
+          <td>{{ data.orderType || "-" }}</td>
+          <td>{{ data.quantity || 0 }}</td>
+          <td>{{ data.price || 0 }}</td>
+          <td>{{ data.vehicalNo || "-" }}</td>
+          <td>{{ data.vehicalType || "-" }}</td>
+          <td>{{ data.issue || "-" }}</td>
+          <td
+            [ngClass]="{
+              red: data.status === 'cancelled',
+              green: data.status === 'success'
+            }"
+            class="status"
+          >
+            {{ data.status || "Cancelled" | titlecase }}
+          </td>
+          <td *ngIf="currentUser?.email === admin.email" class="action-button">
+            <span
+              *ngIf="data.status === 'cancelled' || data.status === 'pending'"
+              class="confirm"
+              (click)="showConfirm(data, data.id)"
+              >Confirm</span
+            >
+            <span
+              *ngIf="data.status === 'success' || data.status === 'pending'"
+              class="confirm"
+              (click)="showCancelled(data, data.id)"
+              >Cancelled</span
+            >
+            <span class="delete" (click)="showDeleteConfirm(data.id)"
+              >Delete</span
+            >
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
+  </div>
+</div>

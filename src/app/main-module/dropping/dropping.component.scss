@@ -1,0 +1,13 @@
+.dropping {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 8px;
+  height: calc(100vh - 76px);
+  .title {
+    height: calc(100vh - 160px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

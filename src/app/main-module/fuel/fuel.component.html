@@ -1,0 +1,98 @@
+<div class="fuel">
+  <div class="header">
+    <button
+      class="back-btn"
+      nz-button
+      nzType="primary"
+      routerLink="main-module"
+    >
+      Back
+    </button>
+    <div class="price">
+      <div class="petrol"><strong>Petrol:</strong> {{ petrolPrice }}₹/lit</div>
+      <div class="diesel"><strong>Diesel:</strong> {{ dieselPrice }}₹/lit</div>
+      <div class="gas"><strong>Gas:</strong> {{ gasPrice }}₹/kg</div>
+    </div>
+    <div class="main-ccontent" *ngIf="!fuelForm.controls.orderType.value">
+      <div class="fuel-type">
+        <h2>Please select fuel type</h2>
+      </div>
+      <div class="redirect-buttons">
+        <button
+          class="petrol"
+          nz-button
+          nzType="primary"
+          (click)="loadButton(1)"
+          [nzLoading]="petrolLoader"
+        >
+          <span nz-icon>
+            <img src="../../../assets/image/petrol-icon.png" alt="" />
+          </span>
+          Petrol
+        </button>
+        <button
+          nz-button
+          nzType="primary"
+          (click)="loadButton(2)"
+          [nzLoading]="dieselLoader"
+        >
+          <span nz-icon>
+            <img src="../../../assets/image/diesel-icon.png" alt="" />
+          </span>
+          Diesel
+        </button>
+        <button
+          nz-button
+          nzType="primary"
+          (click)="loadButton(3)"
+          [nzLoading]="gasLoader"
+        >
+          <span nz-icon>
+            <img src="../../../assets/image/gas-icon.png" alt="" />
+          </span>
+          Gas
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="main-div" *ngIf="fuelForm.controls.orderType.value">
+    <div class="ps-2 pt-2 back" (click)="resetForm()">
+      {{ "< Back" }}
+    </div>
+    <form (ngSubmit)="submit()" [formGroup]="fuelForm">
+      <h4>Order of {{ fuelForm.controls.orderType.value }}</h4>
+      <div class="form-inner-div">
+        <nz-form-item>
+          <nz-form-label nzRequired>Quantity</nz-form-label>
+          <nz-form-control>
+            <input
+              #quantity
+              (input)="changePrice(quantity)"
+              nz-input
+              formControlName="quantity"
+              name="quantity"
+              type="number"
+              max="50"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzRequired>Price</nz-form-label>
+          <nz-form-control>
+            <input
+              disabled="true"
+              nz-input
+              name="price"
+              type="number"
+              id="price"
+              [value]="totalPrice"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="submit-button">
+        <button nz-button type="submit" nzType="primary">Order</button>
+      </div>
+    </form>
+  </div>
+</div>

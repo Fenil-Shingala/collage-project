@@ -1,0 +1,52 @@
+{
+  "userData": [
+    {
+      "firstName": "Fenil",
+      "lastName": "Shingala",
+      "email": "fenil@gmail.com",
+      "password": "Fenil@123",
+      "confirmPassword": "Fenil@123",
+      "id": 1
+    },
+    {
+      "firstName": "Admin",
+      "lastName": "1",
+      "email": "admin@gmail.com",
+      "password": "Admin@123",
+      "confirmPassword": "Admin@123",
+      "id": 2
+    },
+    {
+      "firstName": "Naitik",
+      "lastName": "Zalavadiya",
+      "email": "naitik@gmail.com",
+      "password": "Naitik@123",
+      "confirmPassword": "Naitik@123",
+      "id": 3
+    },
+    {
+      "firstName": "Harsh",
+      "lastName": "Paghadal",
+      "email": "harsh@gmail.com",
+      "password": "Harsh@123",
+      "confirmPassword": "Harsh@123",
+      "id": 4
+    },
+    {
+      "firstName": "paghdal",
+      "lastName": "harsh",
+      "email": "paghdalh%@gmail.com",
+      "password": "Harsh123@",
+      "confirmPassword": "Harsh123@",
+      "id": 5
+    },
+    {
+      "firstName": "paghdal",
+      "lastName": "harsh",
+      "email": "harsh5@gmail.com",
+      "password": "Krish@143",
+      "confirmPassword": "Krish@143",
+      "id": 6
+    }
+  ]
+}

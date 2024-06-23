@@ -1,0 +1,37 @@
+:host ::ng-deep .mechanic {
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 8px;
+  height: calc(100vh - 76px);
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .back-btn {
+      border-radius: 6px;
+    }
+    .title {
+      width: 60%;
+    }
+  }
+  .main-div {
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      nz-form-item {
+        min-width: 450px;
+      }
+      .submit-button {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        button {
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+}

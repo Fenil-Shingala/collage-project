@@ -1,0 +1,146 @@
+<div class="position">
+  <div class="main-div p-3">
+    <div class="m-2">
+      <p class="m-0 pb-2 mb-2 d-flex header-txt align-items-center">
+        <span
+          class="pe-1 color-orange"
+          nz-icon
+          nzType="user"
+          nzTheme="outline"
+        ></span>
+        Login
+      </p>
+      <p class="m-0 pb-2 opacity-50">
+        Login to your account - enjoy exclusive features and many more.
+      </p>
+    </div>
+    <div class="form-part">
+      <div class="m-2">
+        <form
+          nz-form
+          class="w-100"
+          [formGroup]="loginForm"
+          (ngSubmit)="submit()"
+        >
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl">
+              <nz-input-group nzPrefixIcon="mail">
+                <input
+                  nz-input
+                  formControlName="email"
+                  placeholder="Email"
+                  type="email"
+                  class="p-1"
+                  #emailElement
+                  autofocus
+                />
+              </nz-input-group>
+              <ng-template #emailErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('email')"
+                  >The input is not valid E-mail!</ng-container
+                >
+                <ng-container *ngIf="control.hasError('required')"
+                  >Please input your E-mail!</ng-container
+                >
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Password!">
+              <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+                <input
+                  [type]="passwordVisible ? 'text' : 'password'"
+                  nz-input
+                  formControlName="password"
+                  placeholder="Password"
+                  class="p-1"
+                />
+              </nz-input-group>
+              <ng-template #suffixTemplate>
+                <span
+                  nz-icon
+                  [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                  (click)="passwordVisible = !passwordVisible"
+                ></span>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <p class="remember-txt m-0">
+            <span class="d-flex"
+              ><input type="checkbox" id="remember" class="cursor-pointer" />
+              <label for="remember" class="remeber-checkbox">Remember Me</label>
+            </span>
+            <a
+              class="opacity-06 forgot-password"
+              routerLink="/auth-module/forgot-password"
+              >Forgot Password?</a
+            >
+          </p>
+          <button nz-button class="p-2 my-2 w-100 border-0 login-btn">
+            Login
+          </button>
+        </form>
+      </div>
+      <div class="d-flex justify-content-between m-2">
+        <hr class="w-45" />
+        <span class="or">Or</span>
+        <hr class="w-45" />
+      </div>
+      <div class="m-2 footer-part">
+        <div class="py-2 text-center">
+          <button
+            type="button"
+            class="w-100 footer-btn d-flex justify-content-center align-items-center"
+          >
+            <span
+              class="text-secondary pe-1"
+              nz-icon
+              nzType="google"
+              nzTheme="outline"
+            ></span
+            >Google
+          </button>
+        </div>
+        <div class="py-2">
+          <button
+            type="button"
+            class="w-100 footer-btn d-flex justify-content-center align-items-center"
+          >
+            <span
+              class="text-secondary pe-1"
+              nz-icon
+              nzType="facebook"
+              nzTheme="outline"
+            ></span>
+            Facebook
+          </button>
+        </div>
+        <div class="py-2">
+          <button
+            type="button"
+            class="w-100 footer-btn d-flex justify-content-center align-items-center"
+          >
+            <span
+              class="text-secondary pe-1"
+              nz-icon
+              nzType="apple"
+              nzTheme="outline"
+            ></span>
+            Apple ID
+          </button>
+        </div>
+        <hr />
+        <div class="text-center">
+          <p class="m-0">
+            Don't have account?
+            <a
+              class="cursor-pointer footer-txt login-txt"
+              routerLink="/auth-module/register"
+              >Register</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

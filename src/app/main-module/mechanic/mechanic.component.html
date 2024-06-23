@@ -1,0 +1,65 @@
+<div class="mechanic">
+  <div class="header">
+    <button
+      class="back-btn"
+      nz-button
+      nzType="primary"
+      routerLink="main-module"
+    >
+      Back
+    </button>
+    <div class="title">
+      <h3>Please fill below details</h3>
+    </div>
+  </div>
+
+  <div class="main-div">
+    <form [formGroup]="mechanicForm" (ngSubmit)="submit()">
+      <nz-form-item>
+        <nz-form-label nzRequired>Vehical No.</nz-form-label>
+        <nz-form-control>
+          <input
+            nz-input
+            formControlName="vehicalNo"
+            name="vehicalNo"
+            type="text"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="vehicalType"
+          >Vehical Type</nz-form-label
+        >
+        <nz-form-control>
+          <nz-select
+            nzPlaceHolder="Select Vehical Type"
+            formControlName="vehicalType"
+            id="vehicalType"
+          >
+            <nz-option
+              *ngFor="let user of vehicalType"
+              [nzLabel]="user"
+              [nzValue]="user"
+            ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Issue</nz-form-label>
+        <nz-form-control>
+          <nz-textarea-count [nzMaxCharacterCount]="200">
+            <textarea
+              rows="4"
+              formControlName="issue"
+              nz-input
+            ></textarea>
+          </nz-textarea-count>
+        </nz-form-control>
+      </nz-form-item>
+      <div class="submit-button">
+        <button nz-button type="reset" nzType="primary">Reset</button>
+        <button nz-button type="submit" nzType="primary">Order</button>
+      </div>
+    </form>
+  </div>
+</div>
