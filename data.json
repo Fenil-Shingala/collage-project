@@ -1,17 +1,6 @@
 {
   "data": [
     {
-      "vehicalNo": "GJ 05 2365",
-      "vehicalType": "Car",
-      "issue": "tyre puncture",
-      "userId": "fenil@gmail.com",
-      "userName": "Fenil Shingala",
-      "status": "cancelled",
-      "orderType": "Mechanic",
-      "date": "2024-06-11 11:11",
-      "id": 1
-    },
-    {
       "orderType": "Diesel",
       "quantity": 2.65,
       "price": "243.80",
@@ -84,35 +73,46 @@
       "id": 8
     },
     {
-      "orderType": "Petrol",
-      "quantity": 1.35,
-      "price": "129.60",
-      "userId": "admin@gmail.com",
-      "userName": "Admin 1",
-      "status": "pending",
-      "date": "2024-06-11 11:23",
-      "id": 9
-    },
-    {
       "vehicalNo": "GJ 05 2365",
       "vehicalType": "Bike",
       "issue": "Demo",
       "userId": "admin@gmail.com",
       "userName": "Admin 1",
-      "status": "pending",
+      "status": "success",
       "orderType": "Mechanic",
       "date": "2024-06-11 11:23",
       "id": 10
     },
     {
-      "orderType": "Petrol",
-      "quantity": 1,
-      "price": "96.00",
-      "userId": "harsh5@gmail.com",
-      "userName": "paghdal harsh",
+      "vehicalNo": "GJ 05 8569",
+      "vehicalType": "Truck",
+      "issue": "Engine damaged",
+      "userId": "fenil@gmail.com",
+      "userName": "Fenil Shingala",
       "status": "pending",
-      "date": "2024-06-11 11:44",
+      "orderType": "Mechanic",
+      "date": "2024-06-23 11:05",
       "id": 11
+    },
+    {
+      "orderType": "Diesel",
+      "quantity": 2.36,
+      "price": "217.12",
+      "userId": "admin@gmail.com",
+      "userName": "Admin 1",
+      "status": "pending",
+      "date": "2024-06-23 11:08",
+      "id": 12
+    },
+    {
+      "orderType": "Diesel",
+      "quantity": 58,
+      "price": "5336.00",
+      "userId": "admin@gmail.com",
+      "userName": "Admin 1",
+      "status": "pending",
+      "date": "2024-06-23 11:09",
+      "id": 13
     }
   ]
 }

@@ -4,6 +4,9 @@
   padding: 20px;
   margin: 8px;
   height: calc(100vh - 76px);
+  .back-btn {
+    border-radius: 6px;
+  }
   .title {
     height: calc(100vh - 160px);
     display: flex;

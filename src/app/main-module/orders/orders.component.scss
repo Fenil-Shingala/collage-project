@@ -32,6 +32,13 @@
   .table {
     height: calc(100vh - 130px);
     overflow: auto;
+    td {
+      font-size: 12px;
+      padding: 10px 8px;
+    }
+    th {
+      padding: 10px 8px;
+    }
     .status {
       font-weight: 700;
       &.red {

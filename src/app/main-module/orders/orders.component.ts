@@ -1,12 +1,34 @@
 import { Component } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import {
+  NzTableFilterFn,
+  NzTableFilterList,
+  NzTableSortFn,
+  NzTableSortOrder,
+} from 'ng-zorro-antd/table';
 import { Admin } from 'src/app/enum/admin';
 import { Orderdata } from 'src/app/interface/OrderData';
 import { User } from 'src/app/interface/User';
 import { FuelServiceService } from 'src/app/services/api-service/fuel-service/fuel-service.service';
 import { OrderServiceService } from 'src/app/services/api-service/order-service/order-service.service';
 import { SharedServiceService } from 'src/app/services/shared-service/shared-service.service';
+
+// interface DataItem {
+//   name: string;
+//   age: number;
+//   address: string;
+// }
+
+interface ColumnItem {
+  name: string;
+  sortOrder: NzTableSortOrder | null;
+  sortFn: NzTableSortFn<Orderdata> | null;
+  listOfFilter: NzTableFilterList;
+  filterFn: NzTableFilterFn<Orderdata> | null;
+  filterMultiple: boolean;
+  sortDirections: NzTableSortOrder[];
+}
 
 @Component({
   selector: 'app-orders',
@@ -23,11 +45,89 @@ export class OrdersComponent {
   listOfData: Orderdata[] = [];
   listOfDisplayData: Orderdata[] = [];
   admin = Admin;
-  listOfFilter = [
-    { text: 'Pending', value: 'pending' },
-    { text: 'Cancelled', value: 'cancelled' },
-    { text: 'Confirm', value: 'confirm' },
+  listOfColumns: ColumnItem[] = [
+    {
+      name: 'Date',
+      sortOrder: null,
+      sortFn: (a: Orderdata, b: Orderdata) => a.date.localeCompare(b.date),
+      sortDirections: ['ascend', 'descend', null],
+      listOfFilter: [],
+      filterFn: null,
+      filterMultiple: false,
+    },
+    {
+      name: 'Order Type',
+      sortOrder: null,
+      sortFn: (a: Orderdata, b: Orderdata) =>
+        a.orderType.localeCompare(b.orderType),
+      sortDirections: ['ascend', 'descend', null],
+      listOfFilter: [],
+      filterFn: null,
+      filterMultiple: false,
+    },
+    {
+      name: 'Quantity',
+      sortOrder: null,
+      sortFn: (a: Orderdata, b: Orderdata) => a.quantity - b.quantity,
+      sortDirections: ['ascend', 'descend', null],
+      listOfFilter: [],
+      filterFn: null,
+      filterMultiple: false,
+    },
+    {
+      name: 'Price',
+      sortOrder: null,
+      sortFn: (a: Orderdata, b: Orderdata) => a.price - b.price,
+      sortDirections: ['ascend', 'descend', null],
+      listOfFilter: [],
+      filterFn: null,
+      filterMultiple: false,
+    },
+    {
+      name: 'Vehical No',
+      sortOrder: null,
+      sortFn: (a: Orderdata, b: Orderdata) =>
+        a.vehicalNo?.localeCompare(b.vehicalNo),
+      sortDirections: ['ascend', 'descend', null],
+      listOfFilter: [],
+      filterFn: null,
+      filterMultiple: false,
+    },
+    {
+      name: 'Vehical type',
+      sortOrder: null,
+      sortFn: (a: Orderdata, b: Orderdata) =>
+        a.vehicalType?.localeCompare(b.vehicalType),
+      sortDirections: ['ascend', 'descend', null],
+      listOfFilter: [],
+      filterFn: null,
+      filterMultiple: false,
+    },
+    {
+      name: 'Desrciption',
+      sortOrder: null,
+      sortFn: null,
+      sortDirections: [],
+      listOfFilter: [],
+      filterFn: null,
+      filterMultiple: false,
+    },
   ];
+
+  statusColumn: ColumnItem = {
+    name: 'Status',
+    sortOrder: null,
+    sortFn: (a: Orderdata, b: Orderdata) => a.status.localeCompare(b.status),
+    sortDirections: ['ascend', 'descend', null],
+    listOfFilter: [
+      { text: 'Pending', value: 'pending' },
+      { text: 'Cancelled', value: 'cancelled' },
+      { text: 'Confirm', value: 'confirm' },
+    ],
+    filterFn: (status: string[], item: Orderdata) =>
+      status.some((name) => item.status.indexOf(name) !== -1),
+    filterMultiple: true,
+  };
 
   constructor(
     private sharedService: SharedServiceService,

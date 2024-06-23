@@ -1,8 +1,8 @@
 export interface Orderdata {
   id: number;
   quantity: number;
-  price: string | number;
-  orderType: String;
+  price: number;
+  orderType: string;
   userId: string;
   userName: string;
   status: string;

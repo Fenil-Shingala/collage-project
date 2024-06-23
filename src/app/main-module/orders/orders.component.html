@@ -23,7 +23,7 @@
     >
       <thead>
         <tr>
-          <th [nzSortFn]="true">Date</th>
+          <!-- <th [nzSortFn]="true">Date</th> -->
           <th *ngIf="currentUser?.email === admin.email" nzCustomFilter>
             Name
             <nz-filter-trigger
@@ -35,23 +35,34 @@
               <span nz-icon nzType="search"></span>
             </nz-filter-trigger>
           </th>
-
-          <th>Order Type</th>
-          <th [nzSortFn]="true">Quantity</th>
-          <th [nzColumnKey]="'price'" [nzSortFn]="true">Price</th>
-          <th [nzColumnKey]="'price'" [nzSortFn]="true">Vehical No</th>
-          <th [nzColumnKey]="'price'" [nzSortFn]="true">Vehical type</th>
-          <th [nzFilters]="listOfFilter">Desrciption</th>
-          <th [nzFilters]="listOfFilter">Status</th>
+          <th
+            *ngFor="let column of listOfColumns"
+            [nzSortOrder]="column.sortOrder"
+            [nzSortFn]="column.sortFn"
+            [nzSortDirections]="column.sortDirections"
+            [nzFilterMultiple]="column.filterMultiple"
+          >
+            {{ column.name }}
+          </th>
+          <th
+            [nzSortOrder]="statusColumn.sortOrder"
+            [nzSortFn]="statusColumn.sortFn"
+            [nzSortDirections]="statusColumn.sortDirections"
+            [nzFilterMultiple]="statusColumn.filterMultiple"
+            [nzFilters]="statusColumn.listOfFilter"
+            [nzFilterFn]="statusColumn.filterFn"
+          >
+            {{ statusColumn.name }}
+          </th>
           <th *ngIf="currentUser?.email === admin.email">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of nzTable.data">
-          <td>{{ data.date || "-" }}</td>
           <td *ngIf="currentUser?.email === admin.email">
             {{ data.userName }}
           </td>
+          <td>{{ data.date || "-" }}</td>
           <td>{{ data.orderType || "-" }}</td>
           <td>{{ data.quantity || 0 }}</td>
           <td>{{ data.price || 0 }}</td>
